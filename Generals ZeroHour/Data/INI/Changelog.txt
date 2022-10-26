@@ -1,0 +1,156 @@
+Файл со списком изменений в файлах по сравнению с 9.1.20, писал для себя, но может пригодиться
+
+1) Удален КиндОф REPAIR_PAD и модуль RepairDockUpdate у GLANavalYard AmericaNavalYard ChinaNavalYard, Nuke_ChinaNavalYard
+2) Удалена строчка ProjectileDetonationOCL    = None в weapons VenomMissilePods RSOVenomMissileWeapon OspreyAntiGroundMissileWeapon Mi24HindMissileWeapon
+3)TransportSlotCount = 0 у MilitiaVehicleBattleTruck
+4)Добавлен КиндОф GARRISONABLE_UNTIL_DESTROYED MilitiaVehicleBattleTruck
+5)В модуле GarrisonContain юнита MilitiaVehicleBattleTruck параметр     DamagePercentToUnits          = 0% вместо 100%
+6)В модуле GarrisonContain юнита Tank_ChinaVehicleMobileTankBunker параметр     DamagePercentToUnits          = 0% вместо 40%
+7)Добавлен КиндОф GARRISONABLE_UNTIL_DESTROYED Tank_ChinaVehicleMobileTankBunker
+8)Цена Demo_GLAVehicleHowitzer = 1700 вместо 2000
+9) Добавлена броня Tr_DemoHowitzerArmor, почти как TankArmor,только с повышеной защитой от радиации и токсин
+10) У Upgrade_AmericaSentryDroneGun время изменено с 30.0 до 45.0
+11) SpecialPower SuperweaponSatHack3Targeter Chem_SuperweaponAnthraxBomb SuperweaponSubCell Chem_SuperweaponTerrorCell2 добавленна строчка SharedSyncedTimer       = Yes
+12) Добавлена строчка AffectAllies = No в модуль NeutronBlastBehavior объекта NeutronCannonShell
+13) Из Комманд сета Chem_GLAScudStormCommandSet вырезана строчка 10 = Command_UpgradeGLABBCB
+14) Удален модуль RepairDockUpdate и КиндОф REPAIR_PAD У GLAArmsDealer Demo_GLAArmsDealer Chem_GLAArmsDealer Slth_GLAArmsDealer
+15) Изменено MinMoney = 25 на 80 и MaxMoney = 75 на 130 в модуле SalvageCrateCollide у SalvageCrate
+16) Изменено WeaponChance = 10% на 1% и LevelChance = 10% на 1% и MoneyChance = 90% на 98% в модуле SalvageCrateCollide у MilitiaSpecialSalvageDropCrate
+ Здесь запускал бидер и игру и все вроде работало нормально
+17) У Boss_WarFactory и MilitiaResistanceHQ удален модуль  RepairDockUpdate и КиндОф REPAIR_PAD
+18) Изменен комментарий -номер патча в геймдат
+19) Измененна стартовая сумма 9120 на 9121 в multiplayer.ini
+20) Веапон ArtilleryPlatformGun теперь точная копия StrategyCenterGun - просто скопировал туда все
+21) У MonitorArmor  Armor = POISON             25% заменена на 10%
+22) Брони Gadfly_TankArmor_SalvageOne и Gadfly_TankArmor_SalvageTwo переделанны.
+23) обавлена броня QuadCannonToxArmor, копия QuadCannonArmor, но устойчивость к авиационным ракетам 20% вместо 30% и устойчивость к токсинам 25% вместо 50%
+24)После апгрейда на токсиноустойчивую обшифку Chem_GLAVehicleQuadCannon получает броню QuadCannonToxArmor,
+вместо Gadfly_TankArmor_SalvageOne
+25) В коммандсетах GLABlackMarketCommandSet Chem_GLABlackMarketCommandSet Slth_GLABlackMarketCommandSet Demo_GLABlackMarketCommandSet раскомментирован апгрейд   3  = Command_UpgradeGLAJunkRepair и сдвинута нумерация
+26)   BuildCost = 800 заменена на 750 у ChinaTankGattling
+27) У Demo_BombTruckDefaultBombDamage  PrimaryDamage = 1000.0    ;Было 700 меньше чем у обычного ГЛА  
+28)У Demo_BombTruckHighExplosionBombDamage PrimaryDamage = 2000.0;было 1000.0   меньше чем у обычного ГЛА   
+ Тут все вроде было хорошо---------------
+29) В Demo_SCIENCE_GLA_CommandSetRank3 1 = Command_PurchaseScienceGLADemoTrapDrop1 вместо Command_PurchaseScienceAnthraxBomb
+30) В Demo_GLACommandCenterCommandSet 7 = Command_GLADemoTrapDrop вместо Command_AnthraxBomb
+31) В Demo_SpecialPowerShortcutGLA 7 = Command_GLADemoTrapDropFromShortcut вместо Command_AnthraxBombFromShortcut
+32)Добвлен OCL SUPERWEAPON_Demo_GLADemoTrapDrop ;Копия SUPERWEAPON_GLADemoTrapDrop1,но на 3 бочки больше
+33)обавлен модуль:
+   Behavior           = OCLSpecialPower ModuleTag_11255
+    SpecialPowerTemplate = SuperweaponGLADemoTrapDrop
+    UpgradeOCL           = SCIENCE_GLADemoTrapDrop3 SUPERWEAPON_GLADemoTrapDrop3
+    UpgradeOCL           = SCIENCE_GLADemoTrapDrop2 SUPERWEAPON_GLADemoTrapDrop2
+    OCL                  = SUPERWEAPON_Demo_GLADemoTrapDrop
+    CreateLocation       = CREATE_AT_EDGE_NEAR_SOURCE
+   End
+  
+  В Demo_GLACommandCenter
+  
+34) В Weapon MilitiaDestroyerGun заменил ProjectileDetonationFX  = FX_ArtilleryBarrage на WeaponFX_NewTankShellDetonation от пушки оверлорда.
+35) Модуль UndeadBody заменен на ActiveBody с 675 ХП а модуль BattleBusSlowDeathBehavior заменен на 
+Behavior = SlowDeathBehavior ModuleTag_293
+    DeathTypes = ALL -CRUSHED -SPLATTED -EXTRA_4
+    FX = FINAL FX_BuggyNewDeathExplosion 
+    OCL = FINAL OCL_BattleBusDeath
+  End
+  
+и также в моодуле AutoHealBehavior теперь HealingAmount = 7 у GLAVehicleBattleBus Slth_GLAVehicleBattleBus Slth_GLAVehicleBattleBus2 Chem_GLAVehicleBattleBus и у Demo_GLAVehicleBattleBus,только ActiveBody с 705 ХП
+
+36)Добавлен UpgradeCameo1 = Upgrade_GLAJunkRepair GLAVehicleSpyDrone Demo_GLAVehicleSpyDrone Slth_GLATankScorpion Slth_GLAVehicleSpyDrone Chem_GLAVehicleSpyDrone
+38)Добавлен модуль AutoHealBehavior в Slth_GLAVehicleSA4TEL  
+39)в модуле AutoHealBehavior HealingAmount исправлен на round(ХП/100) у GLATankScorpion GLAVehicleQuadTankDT GLAVehicleCombatBike GLA_HeavyTankT-80 Salv_GLAVehicleGadfly DictatorGLAJetAirplaneAC-1 GLAVehicleAirship
+Chem_GLAVehicleQuadBoat GLAVehiclePTBoat GLAVehicleTzarShip Demo_GLATankSandKing Demo_GLAVehicleQuadCannon
+GLARogue_GLAVehicleRocketQuad Demo_GLAVehicleCombatBike Demo_GLATankMonitor Demo_GLAVehicleHowitzer Demo_GLAVehicleBombCrub Demo_GLATankMedium Demo_GLAVehicleScudTruck
+GLAPlaneBomber Demo_GLAJetOka Slth_GLATankTraversor Slth_GLAVehicleQuadCannon Slth_GLAVehicleCombatBike Slth_GLAVehicleQuad Slth_GLAVehicleCombatBikeRebel Slth_GLAVehicleRocketBuggy Slth_GLA_HeavyTankT-72Reb Slth_GLAVehicleToxinTruckFake Slth_GLATankMedium Slth_GLAJetAirplaneAC-1 Slth_GLAMobileTunnelNetwork Slth_KassadVehicleBikeWorkers Slth_GLAVehicleCombatBikeAlQuedaElite
+Chem_GLATankMissileTank Chem_GLAVehicleQuad Chem_GLAVehicleQuadCannon
+Chem_GLATankMedium Chem_GLATankHeavyTank Chem_GLAVehicleScudTruck Chem_GLAPlagueTank GLAAlphaSupplyTruck
+40) Всем юнитам у которых есть модуль GarrisonContain в файле CivilianBuilding.ini не имеющие киндофа GARRISONABLE_UNTIL_DESTROYED получили его.
+41) Так же киндоф GARRISONABLE_UNTIL_DESTROYED добавленн TrainCar04, в результате из юнитов кои 
+имеют модуль GarrisonContain остались только TrainEngineVerySlow и CabooseFullOfTerrorists,ибоони какие-то странные...
+42) В Demo_GLATunnelNetworkCommandSetUpgrade Chem_GLATunnelNetworkCommandSet Demo_GLATunnelNetworkCommandSet GLATunnelNetworkCommandSet Slth_GLATunnelNetworkCommandSet Boss_GLATunnelNetworkCommandSet перемещена кнопка Command_Evacuate с 1= на 12= и сдвинуты кнопки выхода юнитов.
+43) Добавленны новые weapon-ы T-80TankGunPlusOne T-80TankGunPlusTwo T-80MachineGunPlusOne T-80MachineGunPlusTwo 
+ копии T-80TankGun и T-80MachineGun, но с +15% и +30% у урону за каждый скраб соответсвенно.
+44) Юнитам GLA_HeavyTankT-80 и Slth_GLA_HeavyTankT-72Reb добавленны веапоны T-80TankGunPlusOne T-80MachineGunPlusOne после 1 скарба T-80TankGunPlusTwo  T-80MachineGunPlusTwo и после второго.
+45) Добавленны новые weapon-ы Chem_ScudTruckWeaponPlusOne Chem_ScudTruckWeaponPlusTwo Chem_ScudTruckWeaponGammaPlusOne Chem_ScudTruckWeaponGammaPlusTwo 
+ копии Chem_ScudTruckWeapon и Chem_ScudTruckWeaponGamma, но с +15% и +30% у скорости перезарядки за каждый скраб соответсвенно
+46) Добавленны weaponset-ы для скрабов Chem_GLAVehicleScudTruck из пункта выше
+47)Добавленны новые weapon-ы Demo_ScudTruckWeaponPlusOne Demo_ScudTruckWeaponPlusTwo 
+ копии Demo_ScudTruckWeapon, но с +15% и +30% к урону за каждый скраб соответсвенно
+48) Demo_GLAVehicleScudTruck получил новые weaponset-ы для скрабов из пункта выше
+49) Добавлен новый комманд сет Demo_GLAScudTruckCommandSet, копия GLAScudTruckCommandSet, но
+без кнопки переключения на токсины.
+50)  у Demo_GLAVehicleScudTruck теперь CommandSet = Demo_GLAScudTruckCommandSet
+51) Удален киндОф WEAPON_SALVAGER у  Demo_GLAVehicleHowitzer
+52) Удален веапон Slth_TraversorTankGunUpg
+53) Добавленны новые weapon-ы Slth_TraversorTankGunPlusOne Slth_TraversorTankGunPlusTwo
+ копии Slth_TraversorTankGun, но с +15% и +30% к скорости перезарядки за каждый скраб соответсвенно
+54)Добавлена новая броня ToxinTruckArmorAntiEX копия ToxinTruckArmor, но с EXPLOSION 50% вместо 80%
+55)Изменена броня на ToxinTruckArmorAntiEX у Demo_GLAVehicleToxinTruck Slth_GLAVehicleToxinTruck GLAVehicleToxinTruck Slth_GLAVehicleToxinTruckFake
+56)У Nuke_ChinaJetSu34 BuildCost = 1900 вместо 2200
+57)Slth_GLATankMedium Добавлен модуль
+   Behavior = TransportContain ModuleTag_16
+    Slots = 2
+    AllowInsideKindOf   = INFANTRY
+    DamagePercentToUnits = 10%
+    GoAggressiveOnExit = Yes ; AI Will tell people to set their mood to Aggressive on exiting
+   End
+И коммандсет GLATankMarauderCommandSet заменен на GLATankMediumCommandSet
+
+58) В коммандсете SupW_SpecialPowerShortcutUSA 11 = SupW_Command_CruiseMissileFromShortcut вместо Command_TomahawkStormFromShortcut
+59) У Weapon TopolMWeapon AttackRange             = 700.0 вместо 500
+60)У Weapon TopolMWeaponUpgraded   AttackRange              = 800.0 вместо 600.0
+61)У Weapon HammerheadGun AttackRange              = 600.0 вместо 450.0
+62)У Weapon HardArtyCannonGun AttackRange              = 700.0 вместо 550.0
+63)У Chem_SCIENCE_GLA_CommandSetRank1 вырезана кнопка 3 = Chem_Command_PurchaseScienceTechnicalTraining
+64)Добавлен юнит СhemArtilleryCannon ,копия ChinaArtilleryCannon
+65)В ObjectCreationList SUPERWEAPON_ViralOutbreakReal Transport                       = СhemArtilleryCannon вместо ChinaArtilleryCannon
+66)Добавлен Locomotor ChemArtilleryBarrageCannonLocomotor,копия ChinaArtilleryBarrageCannonLocomotor,но 
+Speed               = 300 вместо 150              
+ peedDamaged        = 300 вместо 150       
+MinSpeed            = 300 вместо 150
+67) У СhemArtilleryCannon  Locomotor = SET_NORMAL ChemArtilleryBarrageCannonLocomotor,вместо ChinaArtilleryBarrageCannonLocomotor
+68) Добавленны веапоны ToxinTechnicalGunUpgraded ToxinTechnicalGunUpgradedPlusOne ToxinTechnicalGunUpgradedPlusTwo, копии
+ ToxinTruckGunUpgraded ToxinTruckGunUpgradedPlusOne ToxinTruckGunUpgradedPlusTwo соответсвенно,но урон меньше на 28%
+69)У Object Chem_GLAVehicleTechnicalChassisOne изменены веапоны ToxinTechnicalGunUpgraded ToxinTechnicalGunUpgradedPlusOne ToxinTechnicalGunUpgradedPlusTwo на ToxinTruckGunUpgraded ToxinTruckGunUpgradedPlusOne ToxinTruckGunUpgradedPlusTwo соответсвенно
+70)У объектов Demo_GLAInfantryAngryMobNexus GLAInfantryAngryMobNexus изменен MaxSimultaneousOfType = 20 на 12
+71)SupW_AmericaVehicleComanche добавлена строка MaxSimultaneousOfType = 16
+72)У AirF_AmericaVehicleMobileAirfbaseZapas BuildCost = 800 и BuildTime = 12.0 вместо 4.0
+73)В AirF_AmericaMobileDronecarCommandSet добавлена строчка 3 = AirF_Command_ConstructAmericaVehicleGFX-7KingPredator
+74) У AirF_AmericaVehicleGFX-7KingPredator ExperienceRequired    = 0 100 200 400 заменено на ExperienceRequired    = 0 300 600 1200
+и ExperienceValue       = 75 75 125 175 на ExperienceValue       = 200 200 400 600
+75)  Chem_GLATankHeavyTank BuildCost = 1400 вместо 1200
+76) Вырезаны кнопки Command_ConstructAmericaInfantryMarine Command_ConstructGLATankMarauder как неиспользуемая и вызывающая ошибку билдера при работе с комманд бутонами из-за удаления юнита на который они ссылались
+77) Добавил веапоны WeaponForMapINI и WeaponForMapINI2
+78) Добавлен модуль Demo_GLAVehicleBombCrub
+ Behavior = GarrisonContain ModuleTag_05233
+   ContainMax                    = 4
+   EnterSound                    = GarrisonEnter
+   ExitSound                     = GarrisonExit
+   ImmuneToClearBuildingAttacks  = Yes
+   DamagePercentToUnits          = 50%
+   IsEnclosingContainer          = No
+ End
+ 79) Demo_GLAVehicleBombCrub Добавлен кинд оф GARRISONABLE_UNTIL_DESTROYED
+ 80) Поменял местами DelayBetweenShots и ClipReloadTime в BombCrubGun BombCrubGunPlusOne BombCrubGunPlusTwo и поэтому он стал нормально скрабится,видимо разраб перепутал эти параметры
+ 81) QuadRPGWeaponOne   ClipReloadTime              = 900    было 1000
+ 82) добавленно GLAVehicleQuad и Slth_GLAVehicleQuad 
+ WeaponSet
+    Conditions = CRATEUPGRADE_TWO
+    Weapon = PRIMARY QuadRPGWeaponTwo
+  End
+83) добавлен Weapon QuadRPGWeaponTwo с ClipReloadTime              = 800
+84) В Chem_QuadRPGWeaponOne Chem_QuadRPGWeaponGammaOne ClipReloadTime              = 900 вместо 1000 и урон 24.0 и 30.о соответсвенно
+85) Добавленны Chem_QuadRPGWeaponTwo Chem_QuadRPGWeaponGammaTwo но ClipReloadTime              = 800
+86) Добавленно  Chem_GLAVehicleQuad
+ WeaponSet
+    Conditions = CRATEUPGRADE_TWO
+    Weapon = PRIMARY Chem_QuadRPGWeaponTwo
+  End
+  WeaponSet
+    Conditions = PLAYER_UPGRADE CRATEUPGRADE_TWO
+    Weapon = PRIMARY Chem_QuadRPGWeaponGammaTwo
+  End
+  
+87) Вырезал все ConditionState отвечающие за повреждения у Nuke_ChinaTankDevastator
+88) Добавлен КиндОф SALVAGER юнитам Chem_GLAVehicleFighterPlane Demo_GLAVehicleMobileBOOM GLATunnelNetwork Demo_GLATunnelNetwork Chem_GLATunnelNetwork Chem_GLATunnelNetwork
+89) Вырезанно  у Chem_GLAScudStorm UpgradeCameo2 = Upgrade_GLABBCB и UpgradeCameo3 заменено на 2
